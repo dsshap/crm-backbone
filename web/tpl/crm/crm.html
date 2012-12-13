@@ -1,0 +1,45 @@
+<div class="row-fluid">
+	
+	<script>
+		function crmKeyUpEventHandler(thisObj){
+			if(thisObj.id == 'client-searchText-id'){	window.app.crmView.clientSearch();}
+		}
+	</script>
+	
+	<div id="search-client" class="span3">
+
+		<div class="no-bottom zero-border rounded well sidebar-nav white">
+			<form id="client-searchForm-id" class="search-pane">
+	            <input id="client-searchText-id" type="text" onkeyup="crmKeyUpEventHandler(this)" class="form-search extend-searchbar" placeholder="Search for Clients">
+	        </form>
+			<a id="client-search-new-btn-id" class="btn btn-small" href="#crm/new">New</a>
+			<a id="client-search-power-btn-id" class="btn btn-small" href="#crm/power">Power</a>
+			<a id="client-search-favorites-btn-id" class="btn btn-small" href="#crm/favorites">Favorites</a>
+			<a id="client-search-helping-btn-id" class="btn btn-small" href="#crm/helping">Helping</a>
+			<ul class="nav nav-list">
+				<li class="nav-header">Search Results</li>
+			</ul>
+	    	<div id="client-search-result-list-id" ></div>
+
+		</div> <!-- /well sidebar-nav -->
+				
+	</div> <!-- /search client-->
+
+		
+	<div id="client-workspace" class="rounded white span9">
+		<div class="hero-unit workspace-place-holder" style="height:260px;">
+   			<h2 style="">Welcome to the Client Relationship Mgmt Workspace !</h2>
+
+    		<p>&nbsp;</p>
+
+	    	<img src="img/logo.png" alt="" width="200" height="100" style="float:left">
+		</div>
+	</div><!-- /workspace -->
+	
+</div>
+
+<!-- <div class="row-fluid">
+	
+	
+	
+</div> -->

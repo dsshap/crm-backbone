@@ -1,0 +1,265 @@
+<div class="row white">
+	
+	<div class="span6">
+		<h2><%= firstName %> <%= lastName%> (<%= surveysCreated %>)</h2><br />
+		<h5><%= dateJoined %></h5>
+	</div>
+	<div class="span3">
+		<h6><%= location %></h6>
+	</div>
+	
+	<div class="span3">
+		
+		<div class="btn-toolbar">
+			
+			<div class="btn-group">
+				<a class="btn btn-primary">
+					<i class="icon-star icon-white"></i> Add to Favorites
+				</a>
+			</div>
+			
+			<!-- <div class="btn-group">
+				<a class="btn btn-info">
+					<i class="icon-user icon-white"></i> Currently Helping
+				</a>
+			</div> -->
+			
+		</div> <!-- /btn-toolbar-->
+	</div><!-- /span5-->
+	
+	
+</div>
+
+<div class="row">
+	<div class="white no-bottom workspace-wrapper">
+		<h3>Surveys</h3>
+		<br />
+		
+		<div class="btn-group">
+			<a id="show-new-survey-form-id" class="btn btn-success" data-toggle="modal" href="#client-new-survey-form-id">
+				<i class="icon-plus icon-white"></i> New Survey
+			</a>
+		</div>
+		<br />
+		
+		<h6>Active</h6>
+		<table id="workspace-active-surveys-table-id" class="table table-striped table-condensed survey-result-list">
+			<thead id="workspace-active-surveys-table-thead-id">
+			</thead>
+			<tbody id="workspace-active-surveys-table-body-id">
+			</tbody> <!-- /end tbody-->	
+		</table> <!-- /end first table-->
+		
+		<br />
+		
+		<h6>Finished</h6>
+		<div class="table-scroll">
+			<table id="workspace-finished-surveys-table-id" class="table table-striped table-condensed survey-result-list ">
+				<thead id="workspace-finished-surveys-table-thead-id">
+				</thead>
+				<tbody id="workspace-finished-surveys-table-body-id">
+				</tbody> <!-- /end tbody-->	
+			</table> <!-- /end second table-->
+		</div> <!-- /survey-result-list-->
+	</div> <!-- /workspace-wrapper-->
+</div>
+
+<div id="client-new-survey-form-id" data-backdrop="static" class="new-survey-modal modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h4>New Survey for: <%= firstName %> <%= lastName %></h4>
+	</div>
+	
+	<div id="wrap-form-client-new-survey-id" class="new-survey-modal-body modal-body">
+		<form id="form-client-new-survey-id" class="form-horizontal">
+			<fieldset>
+				
+				<div class="control-group">
+					<label class="control-label" for="title-input-survey-form-id">Title</label>
+					<div class="controls">
+						<input id="title-input-survey-form-id" type="text" name="title" class="input-xlarge" placeholder="Survey title...">
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="sampleSize-input-survey-form-id">Sample Size</label>
+					<div class="controls">
+						<input id="sampleSize-input-survey-form-id" type="text" name="sampleSize" class="input-xlarge" placeholder="Survey sample size...">
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="ageRange-input-survey-form-id">Age Range</label>
+					<div class="controls">
+						<input id="ageRange-input-survey-form-id" type="text" name="ageRange" class="input-xlarge" placeholder="Survey age range...">
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="inlineGenderRadioBtns">Gender</label>
+					<div class="controls">
+						<label class="radio inline">
+							<input id="genderMale-input-survey-form-id" name="gender" type="radio" value="male">Male
+						</label>
+						<label class="radio inline">
+							<input id="genderFemale-input-survey-form-id" name="gender" type="radio" value="female">Female
+						</label>
+						<label class="radio inline">
+							<input id="genderBoth-input-survey-form-id" name="gender" type="radio" value="both">Both
+						</label>
+					</div><!-- /controls-->
+				</div><!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="houseIncome-input-survey-form-id">Household Income Range</label>
+					<div class="controls">
+						<select id="houseIncomeLow-input-survey-form-id" name="income-low" class="span2">
+							<option>$0.00</option>
+							<option>$25,000.00</option>
+							<option>$50,000.00</option>
+							<option>$75,000.00</option>
+							<option>$100,000.00</option>
+							<option>$125,000.00</option>
+							<option>$150,000.00</option>
+							<option>$175,000.00</option>
+							<option>$200,000.00</option>
+							<option>$225,000.00</option>
+							<option>$250,000.00</option>
+						</select>&nbsp;to
+						<select id="houseIncomeHigh-input-survey-form-id" name="income-high" class="span2">
+							<option>$0.00</option>
+							<option>$25,000.00</option>
+							<option>$50,000.00</option>
+							<option>$75,000.00</option>
+							<option>$100,000.00</option>
+							<option>$125,000.00</option>
+							<option>$150,000.00</option>
+							<option>$175,000.00</option>
+							<option>$200,000.00</option>
+							<option>$225,000.00</option>
+							<option>$250,000.00</option>
+						</select>
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="inlineHasChildrenRadioBtns">Target has Kids</label>
+					<div class="controls">
+						<label class="radio inline">
+							<input id="yesChild-input-survey-form-id" name="kids" type="radio" value="yes">Yes
+						</label>
+						<label class="radio inline">
+							<input id="noChild-input-survey-form-id" name="kids" type="radio" value="no">No
+						</label>
+						<label class="radio inline">
+							<input id="eitherChild-input-survey-form-id" name="kids" type="radio" value="either">Either
+						</label>
+					</div><!-- /controls-->
+				</div><!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="ethnicity-input-survey-form-id">Target Ethnicity</label>
+					<div class="controls">
+						<select id="ethnicity-input-survey-form-id" name="ethnicity" multiple="multiple" class="input-xlarge">
+							<option>Caucasian/White</option>
+							<option>African-American</option>
+							<option>Hispanic</option>
+							<option>Native American</option>
+							<option>Asian</option>
+							<option>Other</option>
+						</select>
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="relationshipStatus-input-survey-form-id">Target Relationship Status</label>
+					<div class="controls">
+						<select id="relationshipStatus-input-survey-form-id" name="relationship" multiple="multiple" class="input-xlarge">
+							<option>Single</option>
+							<option>Dating</option>
+							<option>Engaged</option>
+							<option>Married</option>
+							<option>Civil Union</option>
+							<option>Living w/ sig other</option>
+							<option>Divorced</option>
+							<option>Widowed</option>
+						</select>
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="employmentStatus-input-survey-form-id">Target Employment Status</label>
+					<div class="controls">
+						<select id="employmentStatus-input-survey-form-id" name="employment" multiple="multiple" class="input-xlarge">
+							<option>Employed Full Time</option>
+							<option>Employed Part Time</option>
+							<option>Self-employed</option>
+							<option>Student</option>
+							<option>Homemaker</option>
+							<option>Retired</option>
+							<option>Unemployed for 1 yr or more</option>
+							<option>Unemployed for less than 1 yr</option>
+						</select>
+					</div>
+				</div> <!-- /control-group-->
+				
+				<div class="control-group">
+					<label class="control-label" for="education-input-survey-form-id">Target Education</label>
+					<div class="controls">
+						<select id="education-input-survey-form-id" name="education" multiple="multiple" class="input-xlarge">
+							<option>Some High School</option>
+							<option>High School</option>
+							<option>Some College</option>
+							<option>Associate Degree</option>
+							<option>Bachelor's Degree</option>
+							<option>Professional Degree</option>
+							<option>Masters Degree</option>
+							<option>Doctorial Degree</option>
+						</select>
+					</div>
+				</div> <!-- /control-group-->
+				
+				
+				<!-- <div class="control-group">
+					<label class="control-label" for="inlineGenderCheckboxes">Gender</label>
+					<div class="controls">
+						<label class="checkbox inline">
+							<input id="genderMale-input-survey-form-id" type="checkbox" value="male">Male
+						</label>
+						<label class="checkbox inline">
+							<input id="genderFemale-input-survey-form-id" type="checkbox" value="female">Female
+						</label>
+						<label class="checkbox inline">
+							<input id="genderBoth-input-survey-form-id" type="checkbox" value="both">Both
+						</label>
+					</div>
+				</div> -->
+				
+			</fieldset> <!-- /fieldset-->
+		</form> <!-- /form-client-new-survey-id-->
+	</div> <!-- /wrap-form-client-new-survey-id-->
+	
+	<div class="modal-footer">
+		<a data-dismiss="modal" class="btn">Close</a>
+		<a id="save-new-survey-id" class="btn btn-primary">Save New Survey</a>
+	</div>
+	
+</div> <!-- /client-new-survey-id-->
+
+<div id="client-new-survey-processing-id" data-backdrop="static" class="modal hide fade">
+	
+	<div class="modal-body">
+		<h4>Processing adding of new survey for <%= firstName %> <%= lastName %></h4><br />
+		<div class="progress progress-striped active">
+	    	<div id="new-survey-process-id" class="bar" style="width: 10%;"></div>
+	    </div>
+	</div>
+	
+</div>
+
+
+<!-- <div class="row">
+	<div class="span3 offset9">
+		<h3>Total: $<%= (totalBilled).toFixed(2) %></h3>
+	</div>
+</div> -->

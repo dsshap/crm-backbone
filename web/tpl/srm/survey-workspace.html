@@ -1,0 +1,76 @@
+<div class="row white">
+	
+	<div class="span6">
+		<h2><%= name %> </h2><br />
+	</div>
+	<div class="span3">
+		<h6><%= origin %></h6>
+	</div>
+	
+	<div class="span3">
+		
+		<div class="btn-toolbar">
+			
+			<div class="btn-group">
+				<a class="btn btn-primary">
+					<i class="icon-star icon-white"></i> Add to Favorites
+				</a>
+			</div>
+			
+			<!-- <div class="btn-group">
+							<a class="btn btn-success">
+								<i class="icon-user icon-white"></i> Currently Helping
+							</a>
+						</div> -->
+			
+		</div> <!-- /btn-toolbar-->
+	</div><!-- /span5-->
+	
+	
+</div>
+
+<div class="row">
+	<h3 class="span3">Survey Info</h3>
+</div>
+
+<div class="row">
+	
+	<div class="white no-bottom workspace-wrapper span4">
+		
+		<table id="survey-info-table-id" class="table table-bordered">
+			<caption style="display: 'block';">Survey - <%= name %> - Activity</caption>
+			<br />
+			<thead>
+				<tr>
+					<td></td>
+					<th scope="col">Totals</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="color:#27ab2c;">
+					<th scope="row">Completed</th>
+					<td><%= completed %></td>
+				</tr>
+				<tr style="color:#ee4343;">
+					<th scope="row">Disqualified</th>
+					<td><%= disqualified %></td>
+				</tr>
+				<tr style="color:#e6a729;">
+					<th scope="row">Abandoned</th>
+					<td><%= abandoned %></td>
+				</tr>
+			</tbody>
+		</table>		
+		
+	</div> <!-- /workspace-wrapper-->
+	
+	<div class="span6">
+		<div id="survey-info-pie-id"></div>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div id="survey-info-pie-id"></div>
+</div>
+

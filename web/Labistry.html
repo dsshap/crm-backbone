@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lab42 Login</title>
+    <meta name="description" content="">
+    <meta name="author" content="David Shapiro">
+
+
+
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+ 
+	<style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			background: #FFFFFF;
+        }
+		
+
+		
+		.faded-black{
+			background-color: #2C2C2C;
+			background-image: -moz-linear-gradient(center top , #333333, #222222);
+			background-repeat: repeat-x;
+		}
+		
+		.white{
+			background-color: #FFFFFF;
+		}
+		
+		.egg{
+			background: #EEEEEE;
+		}
+		
+		
+		.floating-window {
+			margin-bottom: 0px;
+			
+			border-radius: 4px 4px 4px 4px;
+			padding-left: 20px;
+			border: 0px;
+			
+			-webkit-box-shadow: 0 8px 6px -6px black;
+			-moz-box-shadow: 0 8px 6px -6px black;
+			box-shadow: 0 8px 6px -6px black;
+		}
+		
+		
+		.brand1 {
+		    -moz-transition: all 0.2s linear 0s;
+		    color: #000000;
+
+		    float: right;
+		    font-weight: bold;
+		    margin-left: 20px;
+		    padding-left: 0;
+		    padding-right: 0;
+		    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+		}
+		
+		.brand1:hover{
+			color: #000000;
+			text-decoration: none;
+		}
+		
+		.eventList{
+			height:275px;
+			overflow: auto;
+			list-style: none outside none;
+			margin-left: 0;
+			overflow-x: hidden
+		}
+		
+    </style>
+
+</head>
+
+<body>
+	
+	<div class="navbar navbar-fixed-top">
+	    <div class="navbar-inner">
+	        <div class="container">
+	            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </a>
+	            <a class="brand" href="#">Lab42</a>
+
+	            <div class="nav-collapse">
+	                <ul id="header-nav-id" class="nav">
+	                    <!-- <li id="header-home-id" class="active"><a href="#home">Home</a></li>
+	                    						<li id="header-crm-id"><a href="#crm">CRM</a></li>
+	                    						<li id="header-srm-id"><a href="#srm">SRM</a></li>
+	                    						<li id="header-transactions-id"><a href="#transactions">Transactions</a></li>
+	                    	                    <li id="header-contact-id"><a href="#contact">Contact</a></li> -->
+	                </ul>
+	                <!-- <p class="navbar-text pull-right">Logged in as <a id="user-logged-in-name" href="#profile">Uber User</a> / <a href="#logout">Sign out</p> -->
+	            </div>
+	            <!--/.nav-collapse -->
+	        </div>
+	    </div>
+	</div>
+	
+	<div class="container">
+		
+		<div class="row">
+			<div class="">
+				<div class="floating-window well egg">
+					<div id="events-id" class="tabbable tabs-left">
+						<ul id='tabs-id' class="nav nav-tabs span5"></ul>
+						<div id='details-id' class="tab-content"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	
+	
+	
+
+<script type="text/javascript" src="lib/json2.js"></script>
+<script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="lib/underscore-1.3.1.js"></script>
+<script type="text/javascript" src="lib/backbone.js"></script>
+<!--<script type="text/javascript" src="lib/backbone-localstorage.js"></script> -->
+<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+
+<script>
+	
+	window.Event = Backbone.Model.extend({
+
+	    urlRoot:"../api/index.php/dash-labistry/",
+
+	    initialize:function () {
+	        
+	        
+	    }
+
+	});
+
+	window.EventsCollection = Backbone.Collection.extend({
+
+	    model:Event,
+
+	    url:"../api/index.php/dash-labistry/",
+	
+		findById:function(pId){
+			var url = this.url+pId;
+			console.log("getting events "+pId+" information.");
+			var self = this;
+	        $.ajax({
+	            url:url,
+	            dataType: 'json',
+	            success:function (data) {
+	                console.log("search success: " + data.length);
+	                self.reset(data);
+	            }
+	        });
+			
+		}
+
+	});
+	
+	window.EventsListView = Backbone.View.extend({
+		
+		tagName:"div",
+
+	    initialize:function () {
+			console.log("Initializing EventsListView");
+	        var self = this;
+			
+			this.eventsResults = new EventsCollection();
+			
+	        this.eventsResults.bind("reset", this.render, this);
+	
+			this.eventsResults.findById(1);
+	    },
+
+	    render:function (eventName) {
+			//TABS
+			var eventDivId = "#tabs-id";
+	        $(eventDivId).empty();
+	        _.each(this.eventsResults.models, function (pEvent) {
+	            $(eventDivId).append(new EventsTabListItemView({model:pEvent}).render().el);
+	        }, this);
+	
+			//details
+	        var detailsDivId = "#details-id";
+			$(detailsDivId).empty();
+	        _.each(this.eventsResults.models, function (pEvent) {
+	            $(detailsDivId).append(new EventsDetailsListItemView({model:pEvent}).render().el);
+	        }, this);
+	
+	        return this;
+	    }
+	});
+
+	window.EventsTabListItemView = Backbone.View.extend({
+
+	    tagName:"li",
+	
+		className:'',
+
+	    initialize:function () {
+	        this.template = _.template($('#event-tab-id').html());
+	        this.model.bind("change", this.render, this);
+	        
+	    },
+
+	    render:function (eventName) {
+	        $(this.el).html(this.template(this.model.toJSON()));
+	        return this;
+	    }
+
+	});
+	
+	window.EventsDetailsListItemView = Backbone.View.extend({
+
+	    tagName:"div",
+	
+		className:'tab-pane',
+
+	    initialize:function () {
+	        this.template = _.template($('#event-detail-id').html());
+	        this.model.bind("change", this.render, this);
+	        
+	    },
+
+	    render:function (eventName) {
+			$(this.el).attr({'id': 'l'+this.model.id });
+	        $(this.el).html(this.template(this.model.toJSON()));
+	        return this;
+	    }
+
+	});
+	
+	    
+	var evnt = new EventsListView();
+
+
+</script>
+
+<script type="text/template" id="event-tab-id">
+	<a href='#l<%= id %>' data-toggle="tab"><%= dateIssued %>&nbsp;&nbsp;<%= title %></a>
+</script>
+
+<script type="text/template" id="event-detail-id">
+	<div class="span6">
+		<div class="row">
+			<p align="right"><%= dateIssued %></p>
+			<p><%= title %></p>
+		</div>
+		<div class="row">
+			<a href='<%= link %>'>Link to survey</a>
+		</div>
+		<br />
+		<div class="row">
+			<p>Total Cost $ <%= cost %></p>
+			<p>Payment made on <%= completedDate %></p>
+		</div>
+	</div>
+</script>
+
+
+</body>
+</html>

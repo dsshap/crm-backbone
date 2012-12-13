@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lab42</title>
+    <meta name="description" content="">
+    <meta name="author" content="David Shapiro">
+
+    <!-- Le styles -->
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="css/crm.css" rel="stylesheet">
+	<link type="text/css" href="css/global.css" rel="stylesheet">
+	<link type="text/css" href="css/visualize.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="header"></div>
+<div class="container">
+    <div class="row">
+        <div id="info-pages" class="contact span12>"></div>
+    </div>
+</div> <!-- /container -->
+
+<div id="crm-page" class="container-fluid"></div> <!-- /container-fluid -->
+<div id="srm-page" class="container-fluid"></div> <!-- /container-fluid -->
+<div id="transactions-page" class="container-fluid"></div> <!-- /container-fluid -->
+
+
+
+<script type="text/javascript" src="lib/json2.js"></script>
+<script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="lib/underscore-1.3.1.js"></script>
+<script type="text/javascript" src="lib/backbone.js"></script>
+<!--<script type="text/javascript" src="lib/backbone-localstorage.js"></script> -->
+<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/visualize.js"></script>
+
+<script type="text/javascript" src="js/utils.js"></script>
+
+<script type="text/javascript" src="js/views/headerView.js"></script>
+<script type="text/javascript" src="js/views/homeView.js"></script>
+
+<!-- Models -->
+<script type="text/javascript" src="js/models/person.js"></script>
+<script type="text/javascript" src="js/models/user.js"></script>
+<script type="text/javascript" src="js/models/survey.js"></script>
+<script type="text/javascript" src="js/models/transaction.js"></script>
+
+<!-- Collections -->
+<script type="text/javascript" src="js/collections/personCollection.js"></script>
+<script type="text/javascript" src="js/collections/surveyCollection.js"></script>
+<script type="text/javascript" src="js/collections/transactionsCollection.js"></script>
+
+
+
+<!-- CRM Specific-->
+<script type="text/javascript" src="js/views/crm/clientSearchResultsView.js"></script>
+<script type="text/javascript" src="js/views/crm/crmView.js"></script>
+<script type="text/javascript" src="js/views/crm/clientWorkspaceView.js"></script>
+
+<!-- SRM Specific-->
+<script type="text/javascript" src="js/views/srm/surveySearchResultsView.js"></script>
+<script type="text/javascript" src="js/views/srm/srmView.js"></script>
+<script type="text/javascript" src="js/views/srm/surveyWorkspaceView.js"></script>
+
+<!-- Transactions Specific-->
+<script type="text/javascript" src="js/views/transactions/transactionsView.js"></script>
+
+
+<script type="text/javascript" src="js/views/contactView.js"></script>
+
+
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>

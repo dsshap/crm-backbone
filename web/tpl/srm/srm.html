@@ -1,0 +1,45 @@
+<div class="row-fluid">
+	
+	<script>
+		function srmKeyUpEventHandler(thisObj){
+			if(thisObj.id == 'survey-searchText-id'){	window.app.srmView.surveySearch();}
+		}
+	</script>
+	
+	<div id="search-survey" class="span3">
+
+		<div class="no-bottom zero-border rounded well sidebar-nav white">
+			<form id="survey-searchForm" class="search-pane dropdown">
+	            <input id="survey-searchText-id" type="text" onkeyup="srmKeyUpEventHandler(this)" class="form-search extend-searchbar" placeholder="Search for Surveys">
+	        </form>
+			<a id="survey-search-new-btn-id" class="btn btn-small" href="#srm/new">New</a>
+			<a id="survey-search-power-btn-id" class="btn btn-small" href="#srm/power">Power</a>
+			<a id="survey-search-favorites-btn-id" class="btn btn-small" href="#srm/favorites">Favorites</a>
+			<a id="survey-search-alpha-btn-id" class="btn btn-small" href="#srm/alpha">Alphabetical</a>
+			<ul class="nav nav-list">
+				<li class="nav-header">Search Results</li>
+			</ul>
+	    	<div id="survey-search-result-list-id" ></div>
+
+		</div> <!-- /well sidebar-nav -->
+		
+	</div> <!-- /search client-->
+
+		
+	<div id="survey-workspace" class="rounded white span9">
+		<div class="hero-unit workspace-place-holder" style="height:260px;">
+   			<h2 style="">Welcome to the Survey Relationship Mgmt Workspace !</h2>
+
+    		<p>&nbsp;</p>
+
+	    	<img src="img/logo.png" alt="" width="200" height="100" style="float:left">
+		</div>
+	</div><!-- /workspace -->
+	
+</div>
+
+<!-- <div class="row-fluid">
+	
+	
+	
+</div> -->
